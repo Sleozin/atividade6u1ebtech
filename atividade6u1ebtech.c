@@ -35,13 +35,16 @@ void clear_cdc_buffer() {
     // Limpa o buffer local também
     memset(buf, 0, BUF_SIZE);
 }
-
-// Função para processar os comandos recebidos
-void process_command(const char* command) {
+void eco(const char* command){
     // Faz eco do comando recebido
     tud_cdc_write_str(command);
     tud_cdc_write_str("\r\n");
     tud_cdc_write_flush();
+}
+// Função para processar os comandos recebidos
+void process_command(const char* command) {
+    // Faz eco do comando recebido
+    eco(command);
     
     // Desliga todos os LEDs primeiro
     gpio_put(LED_VERDE, 0);
